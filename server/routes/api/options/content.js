@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Schema Models
-const Send = require("../../models/send"); // Send schema model
+const Send = require("../../../models/send"); // Send schema model
 
 // Test endpoint to ensure that endpoint is working
 router.get("/status", (request, response) => {
@@ -25,5 +25,9 @@ router.post("/:id", (request, response) => {
         });
     })
 });
+
+router.post("/temp", (request, response) => {
+    response.status(200).json(request.body)
+})
 
 module.exports = router;

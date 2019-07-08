@@ -42,14 +42,6 @@ const SendSchema = new Schema({
             type: Date,
             required: true,
             default: Date.now
-        },
-        filePath: {
-            type: String,
-            required: false,
-        },
-        fileName: {
-            type: String,
-            required: false
         }
     },
     password: {
@@ -58,7 +50,11 @@ const SendSchema = new Schema({
     },
     expireTime: {
         type: Date,
-        required: true
+        required: false
+    },
+    expireDownloads: {
+        type: Date,
+        required: false
     }
 });
 

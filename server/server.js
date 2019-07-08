@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const logger = require('mongo-morgan-ext');
 const config = require("../Config/keys");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 
 // Middleware
@@ -14,6 +15,7 @@ const db = config.mongoURL;
 
 // Logs all requests made to all endpoints
 app.use(logger(db,"logs"));
+app.use(cors())
 
 // Connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true, useFindAndModify: false}).then(() => {
@@ -26,7 +28,7 @@ mongoose.set('useNewUrlParser', true);
 
 // Adding Routes
 app.use("/api/options/send", require("./routes/api/options/send")); // For uploading content
-app.use("/api/content", require("./routes/api/content")); // For fetching content
+app.use("/api/options/content", require("./routes/api/options/content")); // For fetching content
 
 // listen on port 5000
 // const port = process.env.PORT || 5000
