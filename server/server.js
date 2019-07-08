@@ -7,15 +7,15 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 
-// Middleware
-app.use(bodyParser.json());
-
 // mongodb Connection String
 const db = config.mongoURL;
 
+// Middleware
+app.use(bodyParser.json());
 // Logs all requests made to all endpoints
 app.use(logger(db,"logs"));
-app.use(cors())
+// Cross Origin Requests 
+app.use(cors({ origin: "*", optionsSuccessStatus: 200}))
 
 // Connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true, useFindAndModify: false}).then(() => {
@@ -25,6 +25,9 @@ mongoose.connect(db, {useNewUrlParser: true, useFindAndModify: false}).then(() =
 });
 // setting url parser setting mongoose
 mongoose.set('useNewUrlParser', true);
+
+// Static route
+app.use('/uploads', express.static('uploads'));
 
 // Adding Routes
 app.use("/api/options/send", require("./routes/api/options/send")); // For uploading content

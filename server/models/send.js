@@ -2,22 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uuid = require("uuid");
 
-const tinyURLSchema = new Schema({
-    url: {
-        type: String,
-        required: false
-    },
-    parentURL: {
-        type: String,
-        required: false //true
-    },
-    DateCreated: {
-        type: Date,
-        required: true,
-        default: Date.now
-    }
-});
-
 // Creating Schema for Course
 const SendSchema = new Schema({
     DateCreated: {
@@ -29,31 +13,20 @@ const SendSchema = new Schema({
         type: String,
         required: true,
     },
-    tinyURL: {
-        type: tinyURLSchema,
-        required: false
-    },
-    data: {
-        type: String,
-        required: true
-    },
-    uploaderInfo: {
-        uploadTime: {
-            type: Date,
-            required: true,
-            default: Date.now
-        }
+    fileInfo: {
+        type: Object,
+        required: true,
     },
     password: {
         type: String,
         required: true,
     },
     expireTime: {
-        type: Date,
+        type: String,
         required: false
     },
     expireDownloads: {
-        type: Date,
+        type: String,
         required: false
     }
 });

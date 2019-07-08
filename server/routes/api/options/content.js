@@ -10,7 +10,7 @@ router.get("/status", (request, response) => {
 });
 
 // Returns all documents in fullSend.sends collection
-router.post("/:id", (request, response) => {
+router.post("/file/:id", (request, response) => {
     Send.findById(request.params.id).then((doc) => {
         response.status(200).json({
             status: 200,
@@ -20,14 +20,10 @@ router.post("/:id", (request, response) => {
     }).catch((error) => {
         response.status(404).json({
             status: 404,
-            Response: "Resourse does not exist",
+            Response: "Resource does not exist",
             traceback: error
         });
     })
 });
-
-router.post("/temp", (request, response) => {
-    response.status(200).json(request.body)
-})
 
 module.exports = router;
