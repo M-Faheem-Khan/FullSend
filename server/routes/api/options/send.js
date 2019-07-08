@@ -3,6 +3,7 @@ const router = express.Router();
 const uuid = require("uuid");
 const bcrypt = require('bcrypt');
 const fs = require("fs");
+const moment = require("moment");
 
 // Schema Models
 const Send = require("../../../models/send"); // Send schema model
@@ -44,11 +45,19 @@ router.post("/upload", (req, response, next)=>{
             if (err) {
                 console.log(err);
             } else {
+                // coverting to int to the number of times the download is available for
+                var expire_after_downloads;
+                if (req.body.ExpireAfterDownloads !== "-"){
+                    expire_after_downloads = parseInt(req.body.ExpireAfterDownloads);
+                } else {
+                    expire_after_downloads = req.body.ExpireAfterDownloads;
+                }
+                
                 let data = {
                     password: req.body.password,
                     fileInfo: req.file,
-                    expireTime: req.body.ExpireTime,
-                    expireDownloads: req.body.ExpireAfterDownloads,
+                    expireTime: moment(new Date().now).add(parseInt(req.body.ExpireTime), 'm').toDate().toISOString(),
+                    expireDownloads: expire_after_downloads,
                     url: "http://localhost:3000/content/url/" + uuid(),
                     password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
                 }

@@ -4,7 +4,8 @@
   "description": "Firefox Send Implementation with MERN Stack + Electron",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"cd client && npm start\" \"cd server && npm run server \" \"cd window_encapsulator && npm start \" "
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/M-Faheem-Khan/FullSend/issues"
   },
-  "homepage": "https://github.com/M-Faheem-Khan/FullSend#readme"
+  "homepage": "https://github.com/M-Faheem-Khan/FullSend#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1"
+  }
 }
