@@ -1,2 +1,1 @@
-# Send
- Firefox Send Implementation with MERN Stack + Electron
+# Send is a simple Implementation of Firefox Send with MERN Stack + Electron
