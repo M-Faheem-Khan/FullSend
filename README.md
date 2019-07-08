@@ -2,7 +2,7 @@
 A simple Implementation of Firefox Send with MERN Stack + Electron
 
 ### Todo:
- - Add the fetching the file aspect
+ - Add the fetching the file from database
  - Encrypt all uploaded file
  - Delete all file and info from both server and database at expriry conditions (time || downloads)
 
