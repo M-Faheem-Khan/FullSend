@@ -62,7 +62,7 @@ router.post("/upload", (req, response, next)=>{
                     password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
                 }
                 
-                let newSend = new Send(data)
+                let newSend = new Send(data);
                 //save the image
                 newSend.save().then((resp) => {
                     response.status(200).json({"url": resp.url})
